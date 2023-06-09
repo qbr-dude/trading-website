@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Purchase } from '../entities/purchase';
 
 type Props = {}
@@ -15,7 +15,7 @@ const PurchaseList = (props: Props) => {
                         'Status', 'Side',
                         'Price', 'Amount',
                         'Instrument'
-                    ].map(head => <th className='border-2 border-black p-2'>{head}</th>)}
+                    ].map(head => <th className='border-2 border-black p-2' key={head}>{head}</th>)}
                 </tr>
             </thead>
             <tbody>
@@ -25,4 +25,5 @@ const PurchaseList = (props: Props) => {
     )
 }
 
-export default PurchaseList;
+// TODO MEMO!
+export default memo(PurchaseList);
