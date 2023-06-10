@@ -14,7 +14,7 @@ const Modal = ({ isActive, activeHandler, children }: Props) => {
     useOutsideClick({ ref, callback: () => activeHandler(false) });
     return (
         <div className={classNames(
-            'absolute top-0 left-0 w-screen h-screen bg-yellow-200 opacity-50 flex justify-center items-center',
+            'absolute top-0 left-0 w-screen h-screen bg-yellow-200 bg-opacity-50 flex justify-center items-center',
             { 'hidden': !isActive }
         )}
         >
