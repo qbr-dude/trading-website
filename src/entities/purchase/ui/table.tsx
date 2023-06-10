@@ -1,17 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { Instrument, OrderSide, OrderStatus } from './../../../shared/api';
 
 type Props = {
     id: number,
     createAt?: Date,
     changeAt?: Date,
-    status: 'Active' | 'Filled' | 'Rejected' | 'Cancelled',
-    side: 'Buy' | 'Sell',
+    status: OrderStatus,
+    side: OrderSide,
     price: number,
     amount: number,
-    instrument: string //create instrument?
+    instrument: Instrument,
 }
 
-const colorizedStatus = (status: Props['status']) => {
+const colorizedStatus = (status: OrderStatus) => {
     let classname = 'border py-2 text-center bg-gradient-to-bl from-transparent';
     if (status === 'Active') {
         classname += ' text-green-600 to-green-300';
@@ -25,7 +26,7 @@ const colorizedStatus = (status: Props['status']) => {
     return <td className={classname}>{status}</td>
 }
 
-const colorizedBySide = (value: any, side: Props['side']) => { // TODO maybe also add gradient
+const colorizedBySide = (value: any, side: OrderSide) => { // TODO maybe also add gradient
     let classname = 'border py-2 text-center';
     if (side === 'Buy') {
         classname += ' text-green-600';
@@ -36,7 +37,6 @@ const colorizedBySide = (value: any, side: Props['side']) => { // TODO maybe als
 }
 
 const TablePurchase = ({ id, amount, instrument, price, side, status, changeAt, createAt }: Props) => {
-
     return (
         <tr>
             <td className='border py-2 text-center'>{id}</td>

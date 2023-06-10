@@ -1,1 +1,1 @@
-export { default as Purchase } from './ui/table';
+export { default } from './ui/table';

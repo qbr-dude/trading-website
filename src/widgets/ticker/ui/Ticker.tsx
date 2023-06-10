@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Button from '../shared/uikit/Button';
-import Input from '../shared/uikit/Input';
-import Select from '../shared/uikit/Select';
+import Button from '../../../shared/uikit/Button';
+import Input from '../../../shared/uikit/Input';
+import Select from '../../../shared/uikit/Select';
 
 type Props = {
     isActive: boolean,
