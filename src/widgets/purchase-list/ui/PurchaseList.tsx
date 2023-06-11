@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react'
-import Purchase from '../../../entities/purchase'
-import { useWebsocket } from './../../../shared/api/index'
+import Purchase from '@/entities/purchase';
+import { useWebsocket } from '@/shared/api/index';
 
 type Props = {}
 

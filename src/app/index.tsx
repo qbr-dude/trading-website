@@ -1,6 +1,6 @@
 import React from 'react';
-import { WSContext } from './../shared/api';
-import IndexPage from './../pages/IndexPage';
+import { WSContext } from '@/shared/api';
+import IndexPage from '@/pages/IndexPage';
 import './index.css';
 
 const App = () => {

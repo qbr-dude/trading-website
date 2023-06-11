@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instrument, OrderSide, OrderStatus } from './../../../shared/api';
+import { Instrument, OrderSide, OrderStatus } from '@/shared/api';
 
 type Props = {
     id: number,
