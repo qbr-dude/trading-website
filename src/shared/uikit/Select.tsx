@@ -2,11 +2,17 @@ import classNames from 'classnames'
 import React from 'react'
 
 type Props = {
+    name: string,
+    selected: string,
+    onChange: (value: any) => void,
     options: string[],
     textAlign?: 'center' | 'left',
 }
 
-const Select = ({ options, textAlign }: Props) => {
+const Select = ({ name, selected, onChange, options, textAlign }: Props) => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        onChange(e.target.value);
+    }
     return (
         <select
             className={classNames(
@@ -14,10 +20,12 @@ const Select = ({ options, textAlign }: Props) => {
                 { 'text-left': !textAlign || textAlign === 'left' },
                 { 'text-center': textAlign === 'center' },
             )}
-            name="1"
-            id="1"
+            name={name}
+            id={name}
+            value={selected}
+            onChange={handleChange}
         >
-            {options.map(option => <option value={option}>{option}</option>)}
+            {options.map(option => <option value={option} key={option}>{option}</option>)}
         </select >
     )
 }

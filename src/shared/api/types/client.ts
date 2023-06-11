@@ -8,17 +8,27 @@ export interface ClientEnvelope extends Envelope {
 
 export interface ClientMessage extends Message { }
 
-export interface SubscribeMarketData extends ClientMessage {
+interface SubscribeMarketData extends ClientMessage {
     instrument: Instrument
 }
 
-export interface UnsubscribeMarketData extends ClientMessage {
+interface UnsubscribeMarketData extends ClientMessage {
     subscriptionId: string
 }
 
-export interface PlaceOrder extends ClientMessage {
-    instrument: Instrument
-    side: OrderSide
+interface PlaceOrder extends ClientMessage {
+    instrument: Instrument,
+    side: OrderSide,
     amount: number,
     price: number,
+}
+
+export interface SubscribeMarketDataEnvelope extends ClientEnvelope {
+    message: SubscribeMarketData,
+}
+export interface UnsubscribeMarketDataEnvelope extends ClientEnvelope {
+    message: UnsubscribeMarketData,
+}
+export interface PlaceOrderEnvelope extends ClientEnvelope {
+    message: PlaceOrder,
 }

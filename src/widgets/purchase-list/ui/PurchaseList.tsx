@@ -1,24 +1,21 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useContext, useEffect } from 'react'
 import Purchase from '@/entities/purchase';
-import { useWebsocket } from '@/shared/api/index';
+import { WSContext } from '@/shared/api';
+import { onerror, onreport, onsuccess, onupdate } from '../model';
 
 type Props = {}
 
 const PurchaseList = (props: Props) => {
-    useWebsocket({
-        onsuccess(message) {
+    const first = useContext(WSContext);
 
-        },
-        onerror(message) {
-
-        },
-        onreport(message) {
-
-        },
-        onupdate(message) {
-
-        },
-    });
+    useEffect(() => {
+        first?.setFeedback(
+            onsuccess,
+            onerror,
+            onreport,
+            onupdate
+        )
+    }, []);
 
     return (
         <table className='w-full'>

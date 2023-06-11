@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react'
 
 type Props = {
-    onClick?: (e: React.MouseEvent<HTMLElement>) => void,
+    onClick?: () => void,
     children?: React.ReactNode,
     color?: 'yellow' | 'green' | 'red',
 }

@@ -1,11 +1,12 @@
 import React from 'react';
-import { WSContext } from '@/shared/api';
+import { WSContext, useWebsocket } from '@/shared/api';
 import IndexPage from '@/pages/IndexPage';
 import './index.css';
 
 const App = () => {
+    const connector = useWebsocket();
     return (
-        <WSContext.Provider value={null}>
+        <WSContext.Provider value={connector}>
             <IndexPage />
         </WSContext.Provider>
     )

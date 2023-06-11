@@ -1,19 +1,19 @@
-import { ClientMessage } from "../types/client";
+import { ClientEnvelope } from "../types/client";
 import { ErrorInfo, ExecutionReport, MarketDataUpdate, ServerEnvelope, SuccessInfo } from "../types/server";
 
 
 export default class WSConnector {
-    connection: WebSocket | undefined
+    connection: WebSocket | null
 
     constructor() {
-        this.connection = undefined;
+        this.connection = null;
     }
 
     connect(
     ) {
-        this.connection = new WebSocket('ws://127.0.0.1:3000/ws/');
+        this.connection = new WebSocket('ws://127.0.0.1:4000/ws/');
         this.connection.onclose = () => {
-            this.connection = undefined;
+            this.connection = null;
         };
 
         this.connection.onerror = () => {
@@ -53,10 +53,12 @@ export default class WSConnector {
                         break;
                 }
             }
+        } else {
+            throw new Error('Set connection before configure feedback');
         }
     };
 
-    send(message: ClientMessage) {
+    send(message: ClientEnvelope) {
         this.connection?.send(JSON.stringify(message));
     };
 
