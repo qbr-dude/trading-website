@@ -12,7 +12,7 @@ type Props = {
 export const useWebsocket = ({ onerror, onsuccess, onreport, onupdate }: Props, callback?: () => void) => {
     useEffect(() => {
         const connector = new WSConnector();
-        connector.connect(onsuccess, onerror, onreport, onupdate);
+        connector.connect();
 
         return () => {
             connector.disconnect();

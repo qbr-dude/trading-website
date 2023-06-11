@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PurchaseList from '../widgets/purchase-list/';
 import Button from './../shared/uikit/Button';
 import Ticker from './../widgets/ticker';
-import Modal from './../shared/uikit/Modal';
+import Modal from '@/shared/uikit/Modal';
 
 type Props = {}
 
