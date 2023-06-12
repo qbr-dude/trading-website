@@ -1,8 +1,8 @@
-import { WSContext } from "@/shared/api"
+import { Instrument, WSContext, instrumentToNumber } from "@/shared/api"
 import { useContext, useEffect } from "react"
 
 type SubscribeMarketDataProps = {
-    instrument: number,
+    instrument: Instrument,
 }
 
 export const useSubscribeMarketData = ({ instrument }: SubscribeMarketDataProps) => {
@@ -12,7 +12,7 @@ export const useSubscribeMarketData = ({ instrument }: SubscribeMarketDataProps)
             connector?.send({
                 messageType: 'SubscribeMarketData',
                 message: {
-                    instrument,
+                    insrtument: instrumentToNumber(instrument),
                 },
             })
         }, 2000);
@@ -25,7 +25,7 @@ const UnsubscribeMarketData = ({ instrument }: SubscribeMarketDataProps) => {
         connector?.send({
             messageType: 'UnsubscribeMarketData',
             message: {
-                instrument,
+                insrtument: instrumentToNumber(instrument),
             },
         })
     }, [connector, instrument]);

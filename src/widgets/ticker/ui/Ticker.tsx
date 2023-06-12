@@ -8,7 +8,7 @@ import { Instrument } from '@/shared/api';
 const Ticker = () => {
     const [instrument, setInstrument] = useState<Instrument>('USD_RUB');
     const [amount, setAmount] = useState('0');
-    const [price, setPrice] = useState('0');
+    const [price, setPrice] = useState('8.558');
 
     const [sendToBuy, sendToSell] = usePlaceOrder({
         instrument,
@@ -37,12 +37,12 @@ const Ticker = () => {
             </div>
             <div className='flex mt-2'>
                 <div className='flex flex-col flex-1'>
-                    <span className='text-center text-3xl font-bold mb-6'>8.558</span>
+                    <span className='text-center text-3xl font-bold mb-6'>{price}</span>
                     <Button color='red' onClick={sendToSell}>Sell</Button>
                 </div>
                 <div className='border mx-5' />
                 <div className='flex flex-col flex-1'>
-                    <span className='text-center text-3xl font-bold mb-6'>8.558</span>
+                    <span className='text-center text-3xl font-bold mb-6'>{price}</span>
                     <Button color='green' onClick={sendToBuy}>Buy</Button>
                 </div>
             </div>

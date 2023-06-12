@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Instrument, OrderSide, OrderStatus } from '@/shared/api';
 
 type Props = {
@@ -40,8 +40,8 @@ const TablePurchase = ({ id, amount, instrument, price, side, status, changeAt, 
     return (
         <tr>
             <td className='border py-2 text-center'>{id}</td>
-            <td className='border py-2 text-center'>{createAt?.toString()}</td>
-            <td className='border py-2 text-center'>{changeAt?.toString()}</td>
+            <td className='border py-2 text-center'>{createAt?.toLocaleString() || new Date().toLocaleString()}</td>
+            <td className='border py-2 text-center'>{changeAt?.toLocaleString() || new Date().toLocaleString()}</td>
             {colorizedStatus(status)}
             {colorizedBySide(side, side)}
             {colorizedBySide(price, side)}
@@ -51,4 +51,4 @@ const TablePurchase = ({ id, amount, instrument, price, side, status, changeAt, 
     )
 }
 
-export default TablePurchase;
+export default memo(TablePurchase);

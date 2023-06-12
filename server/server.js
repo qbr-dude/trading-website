@@ -28,6 +28,13 @@ const onmessage = (client, message) => {
                 subscriptionId: '1',
             }
         }))
+    } else if (parsed.messageType === 'ErrorInfo') {
+        client.send(JSON.stringify({
+            messageType: 'ErrorInfo',
+            message: {
+                reason: 'Some Error Reason',
+            }
+        }))
     }
 }
 

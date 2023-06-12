@@ -5,6 +5,7 @@ import Ticker from '@/widgets/ticker';
 import Modal from '@/shared/uikit/Modal';
 import { open } from '@/app/store/modal';
 import { useAppDispatch } from '@/app/store';
+import PopUp from '@/shared/uikit/PopUp';
 
 type Props = {}
 
@@ -19,6 +20,7 @@ const IndexPage = (props: Props) => {
             <Modal>
                 <Ticker />
             </Modal>
+            <PopUp />
         </>
     )
 }

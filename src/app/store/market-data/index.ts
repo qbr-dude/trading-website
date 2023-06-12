@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "..";
-import { Instrument, OrderSide, Quote } from "@/shared/api";
+import { Instrument, Quote } from "@/shared/api";
 
 type State = {
     subscriptionId?: string;
@@ -34,8 +34,7 @@ export const marketDataSlice = createSlice({
         updateQuotes: (state, action: UpdateQuotesProps) => {
             if (action.payload.quotes)
                 action.payload.quotes.forEach(quote =>
-                    state.quotes[action.payload.instrument].push(quote)
-                )
+                    state.quotes[action.payload.instrument].push(quote))
         }
     }
 })
