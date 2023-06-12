@@ -1,6 +1,3 @@
-import { ClientMessage } from "./client";
-import { ServerMessage } from "./server";
-
 export interface Envelope {
     message: object,
 }

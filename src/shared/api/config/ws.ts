@@ -10,18 +10,18 @@ export default class WSConnector {
     }
 
     connect(
+        onopen: () => void,
+        onclose: () => void
     ) {
         this.connection = new WebSocket('ws://127.0.0.1:4000/ws/');
         this.connection.onclose = () => {
+            onclose();
             this.connection = null;
         };
 
-        this.connection.onerror = () => {
-
-        };
-
+        this.connection.onerror = () => { };
         this.connection.onopen = () => {
-
+            onopen();
         };
     };
 
@@ -39,10 +39,10 @@ export default class WSConnector {
             this.connection.onmessage = (event) => {
                 const message: ServerEnvelope = JSON.parse(event.data);
                 switch (message.messageType) {
-                    case 'Success':
-                        onsuccess(message.message);
+                    case 'SuccessInfo':
+                        onsuccess(message.message as SuccessInfo);
                         break;
-                    case 'Error':
+                    case 'ErrorInfo':
                         onerror(message.message as ErrorInfo);
                         break;
                     case 'ExecutionReport':
@@ -52,11 +52,11 @@ export default class WSConnector {
                         onupdate(message.message as MarketDataUpdate);
                         break;
                 }
-            }
+            };
         } else {
             throw new Error('Set connection before configure feedback');
         }
-    };
+    }
 
     send(message: ClientEnvelope) {
         this.connection?.send(JSON.stringify(message));

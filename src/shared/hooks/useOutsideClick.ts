@@ -5,7 +5,7 @@ type Props = {
     callback: () => void,
 }
 
-export const useOutsideClick = ({ ref, callback }: Props) => {
+export const useOutsideClick = ({ ref, callback }: Props) => { // TODo Посмотреть почему срабатывает все время
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (ref.current && !ref.current.contains(event.target as HTMLElement)) {

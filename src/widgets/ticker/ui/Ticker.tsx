@@ -5,11 +5,7 @@ import Select from '@/shared/uikit/Select';
 import { usePlaceOrder } from '../model';
 import { Instrument } from '@/shared/api';
 
-type Props = {
-    isActive: boolean,
-}
-
-const Ticker = ({ isActive }: Props) => {
+const Ticker = () => {
     const [instrument, setInstrument] = useState<Instrument>('USD_RUB');
     const [amount, setAmount] = useState('0');
     const [price, setPrice] = useState('0');

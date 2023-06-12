@@ -1,22 +1,14 @@
-import React, { memo, useContext, useEffect } from 'react'
+import React, { memo } from 'react'
 import Purchase from '@/entities/purchase';
-import { WSContext } from '@/shared/api';
-import { onerror, onreport, onsuccess, onupdate } from '../model';
+import { useFeedback } from '../model';
+import { useSubscribeMarketData } from '../model/subscribe';
+import { useAppSelector } from '@/app/store';
+import { selectQuotes } from '@/app/store/market-data';
 
-type Props = {}
-
-const PurchaseList = (props: Props) => {
-    const first = useContext(WSContext);
-
-    useEffect(() => {
-        first?.setFeedback(
-            onsuccess,
-            onerror,
-            onreport,
-            onupdate
-        )
-    }, []);
-
+const PurchaseList = () => {
+    const quotes = useAppSelector(selectQuotes);
+    useFeedback();
+    useSubscribeMarketData({ instrument: 1 });
     return (
         <table className='w-full'>
             <thead>
@@ -32,7 +24,20 @@ const PurchaseList = (props: Props) => {
                 </tr>
             </thead>
             <tbody>
-                <Purchase id={1} amount={1} instrument='EUR_RUB' price={1} side='Sell' status='Filled' />
+                {Object.values(quotes).map(
+                    quote => quote.map(
+                        _quote =>
+                            <Purchase
+                                id={_quote.bid}
+                                amount={1}
+                                instrument='EUR_RUB'
+                                price={1}
+                                side='Sell'
+                                status='Filled'
+                                key={_quote.bid}
+                            />
+                    ))}
+
             </tbody>
         </table>
     )

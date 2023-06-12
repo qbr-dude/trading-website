@@ -1,12 +1,12 @@
 import { Envelope, Instrument, Message, OrderSide } from "./base";
 
-type ClientMessateType = 'Subscribe' | 'Unsubscribe' | 'PlaceOrder';
+type ClientMessateType = 'SubscribeMarketData' | 'UnsubscribeMarketData' | 'PlaceOrder';
 
 export interface ClientEnvelope extends Envelope {
     messageType: ClientMessateType
 }
 
-export interface ClientMessage extends Message { }
+interface ClientMessage extends Message { }
 
 interface SubscribeMarketData extends ClientMessage {
     instrument: Instrument

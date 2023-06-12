@@ -1,18 +1,20 @@
 import { Envelope, Instrument, Message, OrderStatus, Quote } from './base';
 
-type ServerMessageType = 'Success' | 'Error' | 'ExecutionReport' | 'MarketDataUpdate';
+type ServerMessageType = 'SuccessInfo' | 'ErrorInfo' | 'ExecutionReport' | 'MarketDataUpdate';
 
 export interface ServerEnvelope extends Envelope {
     messageType: ServerMessageType
 }
 
-export interface ServerMessage extends Message { }
+interface ServerMessage extends Message { }
 
 export interface ErrorInfo extends ServerMessage {
-    reason: string
+    reason: string,
 }
 
-export interface SuccessInfo extends ServerMessage { }
+export interface SuccessInfo extends ServerMessage {
+    subscriptionId: string,
+}
 
 export interface ExecutionReport extends ServerMessage {
     orderId: string,
@@ -22,5 +24,5 @@ export interface ExecutionReport extends ServerMessage {
 export interface MarketDataUpdate extends ServerMessage {
     subscriptionId: string,
     instrument: Instrument,
-    quotes: [Quote],
+    quotes: Quote[],
 }
