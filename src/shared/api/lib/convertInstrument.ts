@@ -13,3 +13,17 @@ export const instrumentToNumber = (instrument: Instrument) => {
             throw new Error('Instrument must be type of `Instrument`');
     }
 }
+
+export const numberToInstrument = (number: number): Instrument => {
+    switch (number) {
+        case 0:
+            return 'EUR_RUB';
+        case 1:
+            return 'EUR_USD';
+        case 2:
+            return 'USD_RUB';
+
+        default:
+            throw new Error('Number must be related to type `Instrument`');
+    }
+}

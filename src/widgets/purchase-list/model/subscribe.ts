@@ -19,7 +19,7 @@ export const useSubscribeMarketData = ({ instrument }: SubscribeMarketDataProps)
     }, [connector, instrument]);
 }
 
-const UnsubscribeMarketData = ({ instrument }: SubscribeMarketDataProps) => {
+export const UnsubscribeMarketData = ({ instrument }: SubscribeMarketDataProps) => {
     const connector = useContext(WSContext);
     useEffect(() => {
         connector?.send({

@@ -33,7 +33,7 @@ const PurchaseList = () => {
                                 instrument={instrument as Instrument}
                                 price={1}
                                 side='Sell'
-                                status='Filled'
+                                status='Active'
                                 key={quote.bid}
                             />)
                 )}

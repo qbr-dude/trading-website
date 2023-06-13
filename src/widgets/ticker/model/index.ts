@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@/app/store";
 import { close } from "@/app/store/modal";
-import { PlaceOrderEnvelope, WSContext } from "@/shared/api";
+import { PlaceOrderEnvelope, WSContext, instrumentToNumber } from "@/shared/api";
 import { useContext } from "react";
 
 type PlaceOrderProps = Omit<PlaceOrderEnvelope['message'], 'side'>;
@@ -18,7 +18,7 @@ export const usePlaceOrder = ({ instrument, amount, price }: PlaceOrderProps) =>
                 price,
                 side: 'Buy',
             }
-        } as PlaceOrderEnvelope);
+        });
         dispatch(close());
     };
     const toSell = () => {
@@ -30,7 +30,7 @@ export const usePlaceOrder = ({ instrument, amount, price }: PlaceOrderProps) =>
                 price,
                 side: 'Sell',
             }
-        } as PlaceOrderEnvelope);
+        });
         dispatch(close());
     };
 
